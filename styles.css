@@ -9,11 +9,12 @@
   --accent-dark: #034a82;
 
   --sans-serif:
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
     -apple-system,
     BlinkMacSystemFont,
     "Segoe UI",
-    Helvetica,
-    Arial,
     sans-serif;
 
   --serif:
@@ -21,7 +22,13 @@
     "Times New Roman",
     Times,
     serif;
+
+  --sidebar-width: 23rem;
 }
+
+/* =========================
+   GLOBAL
+   ========================= */
 
 * {
   box-sizing: border-box;
@@ -39,6 +46,14 @@ body {
   line-height: 1.6;
 }
 
+a {
+  color: var(--accent);
+}
+
+a:hover {
+  color: var(--accent-dark);
+}
+
 /* =========================
    LEFT SIDEBAR
    ========================= */
@@ -48,9 +63,10 @@ body {
   top: 0;
   bottom: 0;
   left: 0;
+  z-index: 10;
 
-  width: 29rem;
-  padding: 3.25rem 3.6rem 2.7rem;
+  width: var(--sidebar-width);
+  padding: 2.7rem 2.8rem 2.3rem;
 
   display: flex;
   flex-direction: column;
@@ -59,23 +75,42 @@ body {
   border-right: 1px solid var(--border);
 
   overflow-y: auto;
-  z-index: 10;
 }
 
 .profile {
   width: 100%;
+  padding-top: 0;
 }
+
+/* Actual profile photograph */
+
+.profile-photo {
+  display: block;
+
+  width: 100%;
+  max-width: 17.4rem;
+  aspect-ratio: 4 / 3;
+
+  margin: 0 0 1.75rem;
+
+  object-fit: cover;
+  object-position: center;
+
+  border-radius: 2px;
+}
+
+/* Optional placeholder, if still used in the HTML */
 
 .portrait-placeholder {
   width: 100%;
-  max-width: 21rem;
-  height: 14.2rem;
+  max-width: 17.4rem;
+  aspect-ratio: 4 / 3;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
-  margin-bottom: 2.8rem;
+  margin: 0 0 1.75rem;
 
   color: var(--accent);
   background:
@@ -86,36 +121,46 @@ body {
       #dcebf1 100%
     );
 
-  border-radius: 0.25rem;
-  box-shadow: 0 0.4rem 1.2rem rgba(0, 0, 0, 0.08);
+  border-radius: 2px;
 
   font-family: var(--serif);
-  font-size: 3.5rem;
+  font-size: 3rem;
   letter-spacing: 0.06em;
 }
 
-.profile h1 {
+/* Name */
+
+.profile h1,
+.sidebar .name {
   margin: 0;
 
   color: var(--text);
-  font-size: 2.15rem;
-  font-weight: 700;
+
+  font-family: var(--sans-serif);
+  font-size: 2rem;
+  font-weight: 300;
   line-height: 1.15;
-  letter-spacing: -0.035em;
+  letter-spacing: -0.025em;
 }
 
 .preferred-name {
-  margin: 0.45rem 0 0;
+  margin: 0.4rem 0 0;
 
   color: var(--secondary-text);
-  font-size: 1rem;
+  font-size: 0.96rem;
+  font-weight: 400;
 }
 
-.position {
-  margin: 1.35rem 0 0;
+/* Academic position */
+
+.position,
+.sidebar-subtitle {
+  margin: 1.25rem 0 0;
 
   color: var(--secondary-text);
-  font-size: 1.05rem;
+
+  font-size: 1rem;
+  font-weight: 400;
   line-height: 1.55;
 }
 
@@ -126,21 +171,21 @@ body {
 .navigation {
   display: flex;
   flex-direction: column;
-  gap: 2.15rem;
+  gap: 1.65rem;
 
-  margin-top: 4.25rem;
+  margin-top: 3.25rem;
 }
 
 .nav-link {
   position: relative;
 
   width: fit-content;
-  padding-left: 0;
+  padding: 0;
 
   color: #5b5b5b;
 
-  font-size: 0.98rem;
-  font-weight: 450;
+  font-size: 0.94rem;
+  font-weight: 400;
   letter-spacing: 0.105em;
   text-decoration: none;
   text-transform: uppercase;
@@ -171,7 +216,7 @@ body {
 
 .nav-link.active {
   color: var(--accent);
-  font-weight: 700;
+  font-weight: 600;
 
   text-decoration: underline;
   text-decoration-thickness: 1px;
@@ -183,12 +228,16 @@ body {
   transform: scale(1);
 }
 
+/* =========================
+   SIDEBAR FOOTER
+   ========================= */
+
 .sidebar-footer {
   margin-top: auto;
-  padding-top: 4rem;
+  padding-top: 2rem;
 
   color: var(--light-text);
-  font-size: 0.86rem;
+  font-size: 0.82rem;
   line-height: 1.45;
 }
 
@@ -201,40 +250,78 @@ body {
    ========================= */
 
 .content {
-  margin-left: 29rem;
+  margin-left: var(--sidebar-width);
 }
+
+/*
+  Sections are switched by script.js.
+  Only the active section is displayed.
+*/
 
 .page-section {
-  min-height: 100vh;
+  display: none;
+
+  width: 100%;
+  height: 100vh;
+  min-height: 0;
 
   padding:
-    4.6rem
-    clamp(4.8rem, 8vw, 9.2rem)
-    7rem;
+    clamp(6rem, 10vh, 7.5rem)
+    clamp(3.5rem, 5.5vw, 6rem)
+    2rem;
 
-  scroll-margin-top: 0;
-
-  border-bottom: 1px solid #f0f0f0;
+  overflow: hidden;
+  border-bottom: 0;
 }
 
-.section-header h2 {
+.page-section.active-section {
+  display: block;
+}
+
+/* =========================
+   MINIMAL SECTION TITLES
+   ========================= */
+
+/*
+  display: table makes the header exactly as wide
+  as its title. Therefore, the line below it is
+  exactly the same width as the title.
+*/
+
+.section-header {
+  display: table;
+  width: auto;
+  max-width: 100%;
+}
+
+.section-header h2,
+.section-header .section-title {
   margin: 0;
 
   color: var(--text);
 
-  font-size: clamp(3.4rem, 5.3vw, 4.9rem);
-  font-weight: 350;
-  line-height: 1;
-  letter-spacing: -0.055em;
+  font-family:
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    sans-serif;
+
+  font-size: 3rem;
+  font-weight: 300;
+  font-synthesis: none;
+
+  line-height: 1.05;
+  letter-spacing: -0.045em;
 }
 
 .title-rule {
-  width: 8.8rem;
-  height: 3px;
+  width: 100%;
+  height: 2px;
 
-  margin: 2.2rem 0 4.5rem;
+  margin: 1.3rem 0 2.6rem;
 
   background: var(--text);
+  border: 0;
 }
 
 /* =========================
@@ -242,15 +329,16 @@ body {
    ========================= */
 
 .about-text {
-  max-width: 64rem;
+  max-width: 58rem;
 
   font-family: var(--serif);
-  font-size: clamp(1.2rem, 1.55vw, 1.46rem);
-  line-height: 1.95;
+  font-size: 1.08rem;
+  font-weight: 400;
+  line-height: 1.68;
 }
 
 .about-text p {
-  margin: 0 0 2rem;
+  margin: 0 0 1.2rem;
 }
 
 .about-text strong {
@@ -262,19 +350,19 @@ body {
 }
 
 .personal-note {
-  max-width: 61rem;
+  max-width: 58rem;
 
-  margin: 4rem 0 0;
-  padding: 2rem 2.4rem;
+  margin: 1.5rem 0 0;
+  padding: 1.1rem 1.5rem;
 
   color: #565656;
   background: #fafafa;
   border-left: 3px solid #dedede;
 
   font-family: var(--serif);
-  font-size: 1.1rem;
+  font-size: 0.94rem;
   font-style: italic;
-  line-height: 1.75;
+  line-height: 1.55;
 }
 
 /* =========================
@@ -283,13 +371,13 @@ body {
 
 .section-introduction {
   max-width: 54rem;
-  margin-bottom: 3rem;
+  margin: 0 0 1.5rem;
 
   color: var(--secondary-text);
 
   font-family: var(--serif);
-  font-size: 1.2rem;
-  line-height: 1.8;
+  font-size: 1.02rem;
+  line-height: 1.65;
 }
 
 .publication-group,
@@ -299,19 +387,19 @@ body {
   max-width: 64rem;
 }
 
+/* =========================
+   PUBLICATIONS
+   ========================= */
+
 .publication-group h3 {
-  margin: 0 0 1.8rem;
+  margin: 0 0 1rem;
 
   color: var(--text);
 
   font-family: var(--serif);
-  font-size: 1.55rem;
+  font-size: 1.15rem;
   font-weight: 600;
 }
-
-/* =========================
-   PUBLICATIONS
-   ========================= */
 
 .publication-list {
   margin: 0;
@@ -319,7 +407,7 @@ body {
 }
 
 .publication-list li {
-  margin-bottom: 2.25rem;
+  margin-bottom: 1.15rem;
   padding-left: 0.7rem;
 }
 
@@ -329,23 +417,23 @@ body {
   color: var(--text);
 
   font-family: var(--serif);
-  font-size: 1.25rem;
+  font-size: 1.04rem;
   font-weight: 600;
-  line-height: 1.55;
+  line-height: 1.4;
 }
 
 .publication-authors {
-  margin: 0.45rem 0 0;
+  margin: 0.2rem 0 0;
 
   color: var(--secondary-text);
-  font-size: 0.98rem;
+  font-size: 0.9rem;
 }
 
 .publication-status {
-  margin: 0.2rem 0 0;
+  margin: 0.05rem 0 0;
 
   color: var(--accent);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-style: italic;
 }
 
@@ -359,7 +447,7 @@ body {
   grid-template-columns: 6.5rem 1fr;
   gap: 1.5rem;
 
-  padding: 2rem 0;
+  padding: 1.2rem 0;
 
   border-top: 1px solid var(--border);
 }
@@ -388,8 +476,9 @@ body {
   color: var(--text);
 
   font-family: var(--serif);
-  font-size: 1.35rem;
+  font-size: 1.08rem;
   font-weight: 600;
+  line-height: 1.4;
 }
 
 .note-item p:not(.note-number),
@@ -397,7 +486,8 @@ body {
   margin: 0;
 
   color: var(--secondary-text);
-  font-size: 1rem;
+  font-size: 0.94rem;
+  line-height: 1.5;
 }
 
 /* =========================
@@ -409,12 +499,12 @@ body {
   grid-template-columns: 3.4rem 1fr;
   gap: 1.5rem;
 
-  padding: 1.8rem 0;
+  padding: 1.1rem 0;
 }
 
 .contact-icon {
   color: #929292;
-  font-size: 2rem;
+  font-size: 1.8rem;
   line-height: 1;
 }
 
@@ -423,8 +513,8 @@ body {
 
   color: var(--text);
 
-  font-size: 1rem;
-  font-weight: 750;
+  font-size: 0.88rem;
+  font-weight: 700;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -435,18 +525,18 @@ body {
   margin: 0;
 
   color: var(--secondary-text);
-  font-size: 1rem;
+  font-size: 0.94rem;
 }
 
 .contact-item .contact-primary {
   margin-bottom: 1rem;
 
   color: var(--accent);
-  font-size: 1.3rem;
+  font-size: 1.05rem;
 }
 
 /* =========================
-   MOBILE MENU BUTTON
+   MENU BUTTON
    ========================= */
 
 .menu-button {
@@ -454,27 +544,118 @@ body {
 }
 
 /* =========================
-   TABLET
+   SHORTER DESKTOP SCREENS
    ========================= */
 
-@media (max-width: 1050px) {
-  .sidebar {
-    width: 23rem;
-    padding-right: 2.7rem;
-    padding-left: 2.7rem;
+@media (min-width: 761px) {
+  body {
+    overflow: hidden;
   }
 
   .content {
-    margin-left: 23rem;
+    height: 100vh;
+    overflow: hidden;
+  }
+}
+
+@media (min-width: 761px) and (max-height: 850px) {
+  .sidebar {
+    padding-top: 1.8rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .profile-photo,
+  .portrait-placeholder {
+    max-width: 14rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .profile h1,
+  .sidebar .name {
+    font-size: 1.75rem;
+  }
+
+  .position,
+  .sidebar-subtitle {
+    margin-top: 0.9rem;
+    font-size: 0.92rem;
+  }
+
+  .navigation {
+    gap: 1.15rem;
+    margin-top: 2rem;
+  }
+
+  .sidebar-footer {
+    padding-top: 1rem;
+    font-size: 0.75rem;
   }
 
   .page-section {
-    padding-right: 3.5rem;
-    padding-left: 3.5rem;
+    padding-top: clamp(3.2rem, 7vh, 4.4rem);
+    padding-bottom: 1.25rem;
   }
 
-  .portrait-placeholder {
-    height: 12rem;
+  .section-header h2,
+  .section-header .section-title {
+    font-size: 2.5rem;
+  }
+
+  .title-rule {
+    margin-top: 1rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .about-text {
+    font-size: 0.96rem;
+    line-height: 1.55;
+  }
+
+  .about-text p {
+    margin-bottom: 0.85rem;
+  }
+
+  .personal-note {
+    margin-top: 1rem;
+    padding: 0.8rem 1.1rem;
+
+    font-size: 0.82rem;
+  }
+
+  .section-introduction {
+    margin-bottom: 1rem;
+    font-size: 0.92rem;
+  }
+
+  .publication-list li {
+    margin-bottom: 0.8rem;
+  }
+
+  .note-item,
+  .teaching-item,
+  .contact-item {
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+  }
+}
+
+/* =========================
+   TABLET
+   ========================= */
+
+@media (min-width: 761px) and (max-width: 1050px) {
+  :root {
+    --sidebar-width: 20rem;
+  }
+
+  .sidebar {
+    padding-right: 2.2rem;
+    padding-left: 2.2rem;
+  }
+
+  .page-section {
+    padding-right: 3rem;
+    padding-left: 3rem;
   }
 }
 
@@ -483,11 +664,14 @@ body {
    ========================= */
 
 @media (max-width: 760px) {
+  body {
+    overflow: auto;
+  }
+
   .menu-button {
     position: fixed;
     top: 1rem;
     right: 1rem;
-
     z-index: 30;
 
     width: 3.1rem;
@@ -517,8 +701,7 @@ body {
 
   .sidebar {
     width: 100%;
-
-    padding: 3.5rem 2.2rem 2.5rem;
+    padding: 3.2rem 2.2rem 2.5rem;
 
     transform: translateX(-102%);
     transition: transform 0.25s ease;
@@ -528,58 +711,71 @@ body {
     transform: translateX(0);
   }
 
+  .profile-photo,
   .portrait-placeholder {
     width: 12rem;
-    height: 8rem;
+    max-width: 100%;
+    margin-bottom: 1.5rem;
+  }
 
-    margin-bottom: 2rem;
-
-    font-size: 2.5rem;
+  .profile h1,
+  .sidebar .name {
+    font-size: 1.9rem;
   }
 
   .navigation {
-    margin-top: 3rem;
-    gap: 1.5rem;
+    gap: 1.4rem;
+    margin-top: 2.5rem;
   }
 
   .sidebar-footer {
-    margin-top: 3.5rem;
+    margin-top: 2.5rem;
   }
 
   .content {
+    height: auto;
     margin-left: 0;
+    overflow: visible;
   }
 
-  .page-section {
-    min-height: auto;
+  .page-section,
+  .page-section.active-section {
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
 
-    padding: 5.5rem 1.6rem 5rem;
+    padding: 5.5rem 1.6rem 4rem;
+
+    overflow: visible;
   }
 
-  .section-header h2 {
-    font-size: 3.25rem;
+  .section-header h2,
+  .section-header .section-title {
+    font-size: clamp(2.3rem, 11vw, 3rem);
+    font-weight: 300;
   }
 
   .title-rule {
-    margin: 1.9rem 0 3rem;
+    margin-top: 1rem;
+    margin-bottom: 2.4rem;
   }
 
   .about-text {
-    font-size: 1.08rem;
-    line-height: 1.8;
+    font-size: 1.03rem;
+    line-height: 1.75;
   }
 
   .personal-note {
-    margin-top: 3rem;
-    padding: 1.5rem;
+    margin-top: 2rem;
+    padding: 1.25rem;
 
-    font-size: 1rem;
+    font-size: 0.95rem;
   }
 
   .note-item,
   .teaching-item {
     grid-template-columns: 1fr;
-    gap: 0.75rem;
+    gap: 0.65rem;
   }
 
   .contact-item {
@@ -602,405 +798,4 @@ body {
   *::after {
     transition-duration: 0.01ms !important;
   }
-}
-
-/* =========================
-   DESKTOP WIDTH ADJUSTMENT
-   ========================= */
-
-@media (min-width: 761px) {
-  .sidebar {
-    width: 23rem;
-    padding-right: 2.8rem;
-    padding-left: 2.8rem;
-  }
-
-  .content {
-    margin-left: 23rem;
-  }
-
-  .portrait-placeholder {
-    max-width: 17.5rem;
-    height: 11.5rem;
-  }
-
-  .page-section {
-    padding-right: clamp(4rem, 7vw, 8rem);
-    padding-left: clamp(4rem, 7vw, 8rem);
-  }
-}
-
-
-/* =========================
-   ONE SECTION AT A TIME
-   ========================= */
-
-.page-section {
-  display: none;
-  min-height: 100vh;
-  border-bottom: none;
-}
-
-.page-section.active-section {
-  display: block;
-}
-
-/* Sidebar without portrait */
-
-.profile {
-  padding-top: 0.4rem;
-}
-
-.navigation {
-  margin-top: 4rem;
-}
-
-/* =========================
-   REFINED RIGHT-PANEL TYPOGRAPHY
-   ========================= */
-
-.page-section {
-  padding-top: 3.6rem;
-}
-
-.section-header h2 {
-  font-size: 3.25rem;
-  font-weight: 350;
-  line-height: 1;
-  letter-spacing: -0.04em;
-}
-
-.title-rule {
-  width: 7.5rem;
-  height: 2px;
-  margin-top: 2rem;
-  margin-bottom: 3.6rem;
-}
-
-.about-text {
-  max-width: 54rem;
-
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.16rem;
-  font-weight: 400;
-  line-height: 1.9;
-}
-
-.about-text p {
-  margin-bottom: 1.75rem;
-}
-
-.personal-note {
-  max-width: 54rem;
-
-  margin-top: 3rem;
-  padding: 1.6rem 2rem;
-
-  font-size: 1rem;
-  line-height: 1.7;
-}
-
-.section-introduction {
-  max-width: 50rem;
-
-  font-size: 1.08rem;
-  line-height: 1.7;
-}
-
-.publication-title {
-  font-size: 1.12rem;
-}
-
-.note-item h3,
-.teaching-item h3 {
-  font-size: 1.2rem;
-}
-
-.note-item p:not(.note-number),
-.teaching-item p:not(.teaching-year),
-.contact-item p {
-  font-size: 0.98rem;
-}
-
-/* =========================
-   COMPACT ONE-SCREEN LAYOUT
-   ========================= */
-
-@media (min-width: 761px) {
-  body {
-    overflow: hidden;
-  }
-
-  .content {
-    height: 100vh;
-    overflow: hidden;
-  }
-
-  .page-section,
-  .page-section.active-section {
-    height: 100vh;
-    min-height: 0;
-
-    padding:
-      2.4rem
-      clamp(3.5rem, 5.5vw, 6rem)
-      2rem;
-
-    overflow: hidden;
-  }
-
-  .section-header h2 {
-    font-size: 2.65rem;
-    line-height: 1;
-    letter-spacing: -0.035em;
-  }
-
-  .title-rule {
-    width: 6.25rem;
-    height: 2px;
-
-    margin-top: 1.35rem;
-    margin-bottom: 2.25rem;
-  }
-
-  .about-text {
-    max-width: 58rem;
-
-    font-size: 0.98rem;
-    line-height: 1.65;
-  }
-
-  .about-text p {
-    margin-bottom: 1.15rem;
-  }
-
-  .personal-note {
-    max-width: 58rem;
-
-    margin-top: 1.5rem;
-    padding: 1rem 1.4rem;
-
-    font-size: 0.88rem;
-    line-height: 1.55;
-  }
-
-  .section-introduction {
-    margin-bottom: 1.5rem;
-
-    font-size: 0.96rem;
-    line-height: 1.6;
-  }
-
-  .publication-group h3 {
-    margin-bottom: 1rem;
-    font-size: 1.15rem;
-  }
-
-  .publication-list li {
-    margin-bottom: 1.15rem;
-  }
-
-  .publication-title {
-    font-size: 0.98rem;
-    line-height: 1.4;
-  }
-
-  .publication-authors {
-    margin-top: 0.2rem;
-    font-size: 0.84rem;
-  }
-
-  .publication-status {
-    margin-top: 0.05rem;
-    font-size: 0.8rem;
-  }
-
-  .note-item,
-  .teaching-item {
-    padding: 1.2rem 0;
-  }
-
-  .note-item h3,
-  .teaching-item h3 {
-    font-size: 1.02rem;
-  }
-
-  .note-item p:not(.note-number),
-  .teaching-item p:not(.teaching-year) {
-    font-size: 0.88rem;
-    line-height: 1.5;
-  }
-
-  .contact-item {
-    padding: 1.1rem 0;
-  }
-
-  .contact-item h3 {
-    font-size: 0.88rem;
-  }
-
-  .contact-item p {
-    font-size: 0.9rem;
-  }
-
-  .contact-item .contact-primary {
-       font-size: 1.05rem;
-  }
-}
-
-
-/* Extra compression for shorter laptop screens */
-
-@media (min-width: 761px) and (max-height: 800px) {
-  .page-section,
-  .page-section.active-section {
-    padding-top: 1.8rem;
-    padding-bottom: 1.4rem;
-  }
-
-  .section-header h2 {
-    font-size: 2.3rem;
-  }
-
-  .title-rule {
-    margin-top: 1rem;
-    margin-bottom: 1.5rem;
-  }
-
-  .about-text {
-    font-size: 0.9rem;
-    line-height: 1.5;
-  }
-
-  .about-text p {
-    margin-bottom: 0.8rem;
-  }
-
-  .personal-note {
-    margin-top: 1rem;
-    padding: 0.8rem 1.1rem;
-    font-size: 0.8rem;
-  }
-}
-
-/* Title-responsive divider */
-
-.section-header {
-  display: block;
-  width: fit-content;
-}
-
-.title-rule {
-  width: 80%;
-  min-width: 4rem;
-  max-width: 16rem;
-}
-
-/* =========================
-   BALANCED DESKTOP TYPOGRAPHY
-   ========================= */
-
-@media (min-width: 761px) {
-  .section-header h2 {
-    font-size: 3rem;
-  }
-
-  .title-rule {
-    margin-top: 1.4rem;
-    margin-bottom: 2.4rem;
-  }
-
-  .about-text {
-    max-width: 56rem;
-
-    font-size: 1.08rem;
-    line-height: 1.68;
-  }
-
-  .about-text p {
-    margin-bottom: 1.2rem;
-  }
-
-  .personal-note {
-    max-width: 56rem;
-
-    margin-top: 1.5rem;
-    padding: 1.1rem 1.5rem;
-
-    font-size: 0.94rem;
-    line-height: 1.55;
-  }
-
-  .section-introduction {
-    font-size: 1.02rem;
-  }
-
-  .publication-title {
-    font-size: 1.04rem;
-  }
-
-  .publication-authors {
-    font-size: 0.9rem;
-  }
-
-  .publication-status {
-    font-size: 0.85rem;
-  }
-
-  .note-item h3,
-  .teaching-item h3 {
-    font-size: 1.08rem;
-  }
-
-  .note-item p:not(.note-number),
-  .teaching-item p:not(.teaching-year),
-  .contact-item p {
-    font-size: 0.94rem;
-  }
-}
-
-/* Divider exactly matches title width */
-
-.section-header {
-  display: block;
-  width: fit-content;
-}
-
-.title-rule {
-  width: 100%;
-  min-width: 0;
-  max-width: none;
-}
-
-.profile-photo {
-  display: block;
-  width: 100%;
-  max-width: 260px;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
-  object-position: center;
-  margin: 0 0 32px;
-  border-radius: 2px;
-}
-
-.sidebar h1,
-.sidebar .name {
-  font-family: Arial, Helvetica, sans-serif !important;
-  font-size: 2rem !important;
-  font-weight: 400 !important;
-  line-height: 1.2 !important;
-  letter-spacing: 0 !important;
-}
-
-
-/* Right-side page titles */
-.section-header h2,
-.section-title {
-  font-family: Arial, Helvetica, sans-serif !important;
-  font-weight: 400 !important;
-}
-
-/* Move every right-side section slightly downward */
-.content-section {
-  padding-top: clamp(75px, 10vh, 100px) !important;
 }
