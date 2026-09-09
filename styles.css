@@ -982,3 +982,12 @@ body {
   margin: 0 0 32px;
   border-radius: 2px;
 }
+
+.sidebar h1,
+.sidebar .name {
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 2rem !important;
+  font-weight: 400 !important;
+  line-height: 1.2 !important;
+  letter-spacing: 0 !important;
+}
