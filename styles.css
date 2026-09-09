@@ -603,3 +603,44 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* =========================
+   DESKTOP WIDTH ADJUSTMENT
+   ========================= */
+
+@media (min-width: 761px) {
+  .sidebar {
+    width: 23rem;
+    padding-right: 2.8rem;
+    padding-left: 2.8rem;
+  }
+
+  .content {
+    margin-left: 23rem;
+  }
+
+  .portrait-placeholder {
+    max-width: 17.5rem;
+    height: 11.5rem;
+  }
+
+  .page-section {
+    padding-right: clamp(4rem, 7vw, 8rem);
+    padding-left: clamp(4rem, 7vw, 8rem);
+  }
+}
+
+
+/* =========================
+   ONE SECTION AT A TIME
+   ========================= */
+
+.page-section {
+  display: none;
+  min-height: 100vh;
+  border-bottom: none;
+}
+
+.page-section.active-section {
+  display: block;
+}
