@@ -1002,5 +1002,5 @@ body {
 
 /* Move every right-side section slightly downward */
 .content-section {
-  padding-top: clamp(75px, 8vh, 100px) !important;
+  padding-top: clamp(75px, 10vh, 100px) !important;
 }
