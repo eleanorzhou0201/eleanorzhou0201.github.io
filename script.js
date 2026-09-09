@@ -10,7 +10,34 @@ const sidebar = document.querySelector(".sidebar");
 const menuButton = document.querySelector(".menu-button");
 
 
-function setActiveNavigation(sectionId) {
+function getValidSectionId() {
+  const hashId = window.location.hash.replace("#", "");
+
+  const sectionExists = sections.some(
+    (section) => section.id === hashId
+  );
+
+  return sectionExists ? hashId : "about";
+}
+
+
+function showSection(sectionId, scrollToTop = true) {
+  sections.forEach((section) => {
+    const isCurrentSection =
+      section.id === sectionId;
+
+    section.classList.toggle(
+      "active-section",
+      isCurrentSection
+    );
+
+    section.setAttribute(
+      "aria-hidden",
+      String(!isCurrentSection)
+    );
+  });
+
+
   navigationLinks.forEach((link) => {
     const isActive =
       link.getAttribute("href") === `#${sectionId}`;
@@ -23,16 +50,42 @@ function setActiveNavigation(sectionId) {
       link.removeAttribute("aria-current");
     }
   });
+
+
+  document.title =
+    sectionId === "about"
+      ? "Lizhuo (Eleanor) Zhou"
+      : `${
+          sectionId.charAt(0).toUpperCase() +
+          sectionId.slice(1)
+        } | Lizhuo Zhou`;
+
+
+  if (scrollToTop) {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "instant"
+    });
+  }
 }
 
 
 navigationLinks.forEach((link) => {
-  link.addEventListener("click", () => {
-    const targetId = link
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    const sectionId = link
       .getAttribute("href")
       .replace("#", "");
 
-    setActiveNavigation(targetId);
+    history.pushState(
+      { sectionId },
+      "",
+      `#${sectionId}`
+    );
+
+    showSection(sectionId);
 
     sidebar.classList.remove("open");
 
@@ -49,32 +102,13 @@ navigationLinks.forEach((link) => {
 });
 
 
-const sectionObserver = new IntersectionObserver(
-  (entries) => {
-    const visibleSections = entries
-      .filter((entry) => entry.isIntersecting)
-      .sort(
-        (first, second) =>
-          second.intersectionRatio -
-          first.intersectionRatio
-      );
-
-    if (visibleSections.length > 0) {
-      setActiveNavigation(
-        visibleSections[0].target.id
-      );
-    }
-  },
-  {
-    root: null,
-    rootMargin: "-20% 0px -55% 0px",
-    threshold: [0.05, 0.2, 0.4, 0.6]
-  }
-);
+window.addEventListener("popstate", () => {
+  showSection(getValidSectionId());
+});
 
 
-sections.forEach((section) => {
-  sectionObserver.observe(section);
+window.addEventListener("hashchange", () => {
+  showSection(getValidSectionId());
 });
 
 
@@ -111,3 +145,6 @@ document.addEventListener("keydown", (event) => {
     );
   }
 });
+
+
+showSection(getValidSectionId(), false);
