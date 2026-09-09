@@ -958,3 +958,16 @@ body {
     font-size: 0.94rem;
   }
 }
+
+/* Divider exactly matches title width */
+
+.section-header {
+  display: block;
+  width: fit-content;
+}
+
+.title-rule {
+  width: 100%;
+  min-width: 0;
+  max-width: none;
+}
