@@ -971,3 +971,14 @@ body {
   min-width: 0;
   max-width: none;
 }
+
+.profile-photo {
+  display: block;
+  width: 100%;
+  max-width: 260px;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  object-position: center;
+  margin: 0 0 32px;
+  border-radius: 2px;
+}
