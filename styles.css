@@ -895,3 +895,66 @@ body {
   min-width: 4rem;
   max-width: 16rem;
 }
+
+/* =========================
+   BALANCED DESKTOP TYPOGRAPHY
+   ========================= */
+
+@media (min-width: 761px) {
+  .section-header h2 {
+    font-size: 3rem;
+  }
+
+  .title-rule {
+    margin-top: 1.4rem;
+    margin-bottom: 2.4rem;
+  }
+
+  .about-text {
+    max-width: 56rem;
+
+    font-size: 1.08rem;
+    line-height: 1.68;
+  }
+
+  .about-text p {
+    margin-bottom: 1.2rem;
+  }
+
+  .personal-note {
+    max-width: 56rem;
+
+    margin-top: 1.5rem;
+    padding: 1.1rem 1.5rem;
+
+    font-size: 0.94rem;
+    line-height: 1.55;
+  }
+
+  .section-introduction {
+    font-size: 1.02rem;
+  }
+
+  .publication-title {
+    font-size: 1.04rem;
+  }
+
+  .publication-authors {
+    font-size: 0.9rem;
+  }
+
+  .publication-status {
+    font-size: 0.85rem;
+  }
+
+  .note-item h3,
+  .teaching-item h3 {
+    font-size: 1.08rem;
+  }
+
+  .note-item p:not(.note-number),
+  .teaching-item p:not(.teaching-year),
+  .contact-item p {
+    font-size: 0.94rem;
+  }
+}
