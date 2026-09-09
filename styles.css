@@ -882,3 +882,16 @@ body {
     font-size: 0.8rem;
   }
 }
+
+/* Title-responsive divider */
+
+.section-header {
+  display: block;
+  width: fit-content;
+}
+
+.title-rule {
+  width: 80%;
+  min-width: 4rem;
+  max-width: 16rem;
+}
