@@ -999,3 +999,8 @@ body {
   font-family: Arial, Helvetica, sans-serif !important;
   font-weight: 400 !important;
 }
+
+/* Move every right-side section slightly downward */
+.content-section {
+  padding-top: clamp(75px, 8vh, 100px) !important;
+}
