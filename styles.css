@@ -644,3 +644,13 @@ body {
 .page-section.active-section {
   display: block;
 }
+
+/* Sidebar without portrait */
+
+.profile {
+  padding-top: 0.4rem;
+}
+
+.navigation {
+  margin-top: 4rem;
+}
