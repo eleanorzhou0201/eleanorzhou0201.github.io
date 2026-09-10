@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
   <meta
     name="description"
@@ -11,121 +15,163 @@
 
   <title>Lizhuo Zhou</title>
 
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=6">
 </head>
 
 <body>
+
+  <!-- Mobile navigation button -->
   <button
     class="menu-button"
     type="button"
     aria-label="Open navigation"
     aria-expanded="false"
+    aria-controls="sidebar"
   >
     <span></span>
     <span></span>
     <span></span>
   </button>
 
-  <aside class="sidebar">
+  <!-- =========================
+       LEFT SIDEBAR
+       ========================= -->
+
+  <aside id="sidebar" class="sidebar">
+
     <div class="profile">
-      
-      <img src="profile.jpg" alt="Lizhuo Zhou" class="profile-photo">
+      <img
+        class="profile-photo"
+        src="profile.jpg"
+        alt="Portrait of Lizhuo Zhou"
+        loading="eager"
+        decoding="async"
+      >
 
       <h1>Lizhuo Zhou</h1>
 
-
       <p class="position">
-        Student in Statistics &amp; Data Science<br>
+        M.S. in Statistics &amp; Data Science<br>
         Northwestern University
       </p>
     </div>
 
     <nav class="navigation" aria-label="Main navigation">
-      <a class="nav-link active" href="#about">
-        <span class="nav-dot">•</span>
+
+      <a
+        class="nav-link active"
+        href="#about"
+        aria-current="page"
+      >
+        <span class="nav-dot" aria-hidden="true">•</span>
         About
       </a>
 
       <a class="nav-link" href="#publications">
-        <span class="nav-dot">•</span>
+        <span class="nav-dot" aria-hidden="true">•</span>
         Publications
       </a>
 
       <a class="nav-link" href="#notes">
-        <span class="nav-dot">•</span>
+        <span class="nav-dot" aria-hidden="true">•</span>
         Notes &amp; Expository
       </a>
 
       <a class="nav-link" href="#teaching">
-        <span class="nav-dot">•</span>
+        <span class="nav-dot" aria-hidden="true">•</span>
         Teaching
       </a>
 
       <a class="nav-link" href="#contact">
-        <span class="nav-dot">•</span>
+        <span class="nav-dot" aria-hidden="true">•</span>
         Contact
       </a>
+
     </nav>
 
     <footer class="sidebar-footer">
-      <p>© 2026 Lizhuo Zhou.</p>
+      <p>&copy; 2026 Lizhuo Zhou.</p>
       <p>All rights reserved.</p>
     </footer>
+
   </aside>
+
+  <!-- =========================
+       MAIN CONTENT
+       ========================= -->
 
   <main class="content">
 
-    <!-- ABOUT -->
-    <section id="about" class="page-section">
+    <!-- =========================
+         ABOUT
+         ========================= -->
+
+    <section
+      id="about"
+      class="page-section active-section"
+      aria-labelledby="about-title"
+    >
       <header class="section-header">
-        <h2>About</h2>
-        <div class="title-rule"></div>
+        <h2 id="about-title">About</h2>
+        <div class="title-rule" aria-hidden="true"></div>
       </header>
 
       <div class="about-text">
+
         <p>
-          Hello! I am Lizhuo Zhou, and I also go by Eleanor. I am a graduate student in Statistics and Data Science at
-          Northwestern University. Previously, I obtained my B.Sc. in
-          Statistics from Fudan University. 
+          Hello! I am Lizhuo Zhou, and I also go by Eleanor.
+          I recently completed my M.S. in Statistics and Data Science
+          at Northwestern University. Previously, I received my B.Sc.
+          in Statistics from Fudan University.
         </p>
 
         <p>
           My research interests lie at the intersection of
           <em>
-            statistical inference, optimal
-            transport, and machine learning
+            statistical inference, optimal transport, and machine
+            learning
           </em>.
-          I am particularly interested in developing mathematically-grounded work and interpretable methods for complex,
+          I am particularly interested in developing mathematically
+          grounded and interpretable methods for complex,
           high-dimensional, and dynamically evolving systems.
         </p>
 
         <p>
           My current work includes stochastic phase-field models for
-          longitudinal medical imaging, personalized sequential Bayesian
-          inference, and theoretical connections between Wasserstein
-          gradient flows and large deviations.
+          longitudinal medical imaging, personalized sequential
+          Bayesian inference, and theoretical connections between
+          Wasserstein gradient flows and large deviations.
         </p>
 
         <p>
           I enjoy research that connects rigorous statistical theory
-          with meaningful scientific applications. I am always happy to
-          discuss interesting problems and potential research
+          with meaningful scientific applications. I am always happy
+          to discuss interesting problems and potential research
           collaborations.
         </p>
+
       </div>
 
       <blockquote class="personal-note">
-        “I am interested in the mathematical structures behind learning,
-        uncertainty, and evolving systems—and in turning those structures
-        into useful statistical methods.”
+        “I am interested in the mathematical structures behind
+        learning, uncertainty, and evolving systems—and in turning
+        those structures into useful statistical methods.”
       </blockquote>
     </section>
 
-    <!-- PUBLICATIONS -->
-    <section id="publications" class="page-section">
+    <!-- =========================
+         PUBLICATIONS
+         ========================= -->
+
+    <section
+      id="publications"
+      class="page-section"
+      aria-labelledby="publications-title"
+      hidden
+    >
       <header class="section-header">
-        <h2>Publications</h2>
-        <div class="title-rule"></div>
+        <h2 id="publications-title">Publications</h2>
+        <div class="title-rule" aria-hidden="true"></div>
       </header>
 
       <div class="section-introduction">
@@ -135,9 +181,11 @@
       </div>
 
       <div class="publication-group">
+
         <h3>Manuscripts in Preparation</h3>
 
         <ol class="publication-list">
+
           <li>
             <p class="publication-title">
               Stochastic Phase-Field Modeling for Geographic Atrophy
@@ -182,30 +230,44 @@
               Working draft.
             </p>
           </li>
+
         </ol>
       </div>
     </section>
 
-    <!-- NOTES -->
-    <section id="notes" class="page-section">
+    <!-- =========================
+         NOTES & EXPOSITORY
+         ========================= -->
+
+    <section
+      id="notes"
+      class="page-section"
+      aria-labelledby="notes-title"
+      hidden
+    >
       <header class="section-header">
-        <h2>Notes &amp; Expository</h2>
-        <div class="title-rule"></div>
+        <h2 id="notes-title">Notes &amp; Expository</h2>
+        <div class="title-rule" aria-hidden="true"></div>
       </header>
 
       <div class="section-introduction">
         <p>
           Selected expository notes on statistics, probability,
-          optimal transport, stochastic processes, and machine learning.
+          optimal transport, stochastic processes, and machine
+          learning.
         </p>
       </div>
 
       <div class="note-list">
+
         <article class="note-item">
           <p class="note-number">01</p>
 
           <div>
-            <h3>Optimal Transport and Statistical Learning</h3>
+            <h3>
+              Optimal Transport and Statistical Learning
+            </h3>
+
             <p>
               Notes on Wasserstein geometry, gradient flows, and their
               connections to modern generative modeling.
@@ -217,7 +279,10 @@
           <p class="note-number">02</p>
 
           <div>
-            <h3>Stochastic Processes and Scientific Modeling</h3>
+            <h3>
+              Stochastic Processes and Scientific Modeling
+            </h3>
+
             <p>
               Selected derivations and observations from stochastic
               differential equations and phase-field models.
@@ -230,6 +295,7 @@
 
           <div>
             <h3>Statistical Inference</h3>
+
             <p>
               Expository notes on Bayesian inference, variational
               methods, hypothesis testing, and uncertainty
@@ -237,22 +303,33 @@
             </p>
           </div>
         </article>
+
       </div>
     </section>
 
-    <!-- TEACHING -->
-    <section id="teaching" class="page-section">
+    <!-- =========================
+         TEACHING
+         ========================= -->
+
+    <section
+      id="teaching"
+      class="page-section"
+      aria-labelledby="teaching-title"
+      hidden
+    >
       <header class="section-header">
-        <h2>Teaching</h2>
-        <div class="title-rule"></div>
+        <h2 id="teaching-title">Teaching</h2>
+        <div class="title-rule" aria-hidden="true"></div>
       </header>
 
       <div class="teaching-list">
+
         <article class="teaching-item">
           <p class="teaching-year">Northwestern</p>
 
           <div>
             <h3>Statistics and Data Science</h3>
+
             <p>
               Selected course materials, tutorials, and mathematical
               notes will be added here.
@@ -265,25 +342,38 @@
 
           <div>
             <h3>Mathematics and Machine Learning</h3>
+
             <p>
               Expository materials covering probability, linear
               algebra, analysis, optimization, and machine learning.
             </p>
           </div>
         </article>
+
       </div>
     </section>
 
-    <!-- CONTACT -->
-    <section id="contact" class="page-section">
+    <!-- =========================
+         CONTACT
+         ========================= -->
+
+    <section
+      id="contact"
+      class="page-section"
+      aria-labelledby="contact-title"
+      hidden
+    >
       <header class="section-header">
-        <h2>Contact</h2>
-        <div class="title-rule"></div>
+        <h2 id="contact-title">Contact</h2>
+        <div class="title-rule" aria-hidden="true"></div>
       </header>
 
       <div class="contact-list">
+
         <article class="contact-item">
-          <div class="contact-icon" aria-hidden="true">✉</div>
+          <div class="contact-icon" aria-hidden="true">
+            ✉
+          </div>
 
           <div>
             <h3>Email</h3>
@@ -291,17 +381,13 @@
             <p class="contact-primary">
               Email address will be added here.
             </p>
-
-            <p>
-              I welcome conversations about statistics, stochastic
-              processes, optimal transport, scientific machine
-              learning, and potential research collaborations.
-            </p>
           </div>
         </article>
 
         <article class="contact-item">
-          <div class="contact-icon" aria-hidden="true">↗</div>
+          <div class="contact-icon" aria-hidden="true">
+            ↗
+          </div>
 
           <div>
             <h3>Academic Profiles</h3>
@@ -312,11 +398,12 @@
             </p>
           </div>
         </article>
+
       </div>
     </section>
 
   </main>
 
-  <script src="script.js"></script>
+  <script src="script.js?v=2"></script>
 </body>
 </html>
