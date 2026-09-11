@@ -806,3 +806,18 @@ a:hover {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Use clean sans-serif typography throughout the right panel */
+.about-text,
+.personal-note,
+.section-introduction,
+.publication-group h3,
+.publication-title,
+.note-item h3,
+.teaching-item h3 {
+  font-family:
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    sans-serif;
+}
