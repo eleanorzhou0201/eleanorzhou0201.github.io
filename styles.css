@@ -806,3 +806,46 @@ a:hover {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* =========================
+   REMOVE LIST LABELS
+   ========================= */
+
+/* Publications: remove 1, 2, 3 */
+
+.publication-list {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.publication-list li {
+  margin-bottom: 1.15rem;
+  padding-left: 0;
+}
+
+/* Notes and Teaching: remove the left label column */
+
+.note-item,
+.teaching-item {
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+/* Hide old labels if any remain in the HTML */
+
+.note-number,
+.teaching-year {
+  display: none;
+}
+
+/* Keep description text formatting after removing labels */
+
+.note-item p,
+.teaching-item p {
+  margin: 0;
+
+  color: var(--secondary-text);
+  font-size: 0.94rem;
+  line-height: 1.5;
+}
