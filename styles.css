@@ -855,12 +855,10 @@ a:hover {
 }
 
 
-.misc-arrow-note {
-  margin-top: 60px;
-  text-align: center;
-}
-
-.misc-arrow-note p {
-  font-size: 1.05rem;
-  line-height: 1.8;
+.rock-painting {
+  display: block;
+  max-width: 500px;
+  width: 100%;
+  height: auto;
+  margin-top: 24px;
 }
