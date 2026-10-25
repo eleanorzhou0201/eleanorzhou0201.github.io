@@ -853,3 +853,14 @@ a:hover {
 .personal-note {
   margin-top: 60px;
 }
+
+
+.misc-arrow-note {
+  margin-top: 60px;
+  text-align: center;
+}
+
+.misc-arrow-note p {
+  font-size: 1.05rem;
+  line-height: 1.8;
+}
