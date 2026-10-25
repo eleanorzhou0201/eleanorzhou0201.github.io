@@ -849,3 +849,7 @@ a:hover {
   font-size: 0.94rem;
   line-height: 1.5;
 }
+
+.personal-note {
+  margin-top: 60px;
+}
