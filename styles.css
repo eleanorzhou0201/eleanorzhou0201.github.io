@@ -893,4 +893,19 @@ main {
   -webkit-overflow-scrolling: touch;
 }
 
+/* FIX: Enable vertical scrolling on desktop */
+
+@media (min-width: 761px) {
+  .content {
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .page-section.active-section {
+    height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    overscroll-behavior-y: contain;
+  }
+}
 
