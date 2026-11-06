@@ -85,7 +85,7 @@ a:hover {
 /* Actual profile photograph */
 
 .profile-photo {
-  display: block;
+  visibility: hidden;
 
   width: 100%;
   max-width: 17.4rem;
