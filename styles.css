@@ -86,10 +86,11 @@ a:hover {
 
 .profile-photo {
   visibility: hidden;
+  display: block;
 
   width: 100%;
   max-width: 17.4rem;
-  aspect-ratio: 4 / 3;
+  height: 13.05rem;
 
   margin: 0 0 1.75rem;
 
