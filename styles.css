@@ -910,11 +910,10 @@ main {
   }
 }
 
-/* Featured body text */
+/* Featured: match Miscellaneous body font */
 
-#featured .section-introduction p,
-#featured .publication-group p {
-  font-family: "Times New Roman", Times, serif;
-  font-size: 1.15rem;
-  line-height: 1.65;
+#featured .featured-description p {
+  font-family: var(--serif);
+  font-size: 1.08rem;
+  line-height: 1.68;
 }
