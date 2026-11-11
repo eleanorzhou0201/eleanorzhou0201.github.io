@@ -31,6 +31,8 @@ function showSection(sectionId, scrollToTop = true) {
       isCurrentSection
     );
 
+    section.hidden = !isCurrentSection;
+
     section.setAttribute(
       "aria-hidden",
       String(!isCurrentSection)
